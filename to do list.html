@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+<style>   /* meta tag used to control the layout of the web page */
 body {
   margin: 0;
   min-width: 250px;
@@ -28,7 +28,7 @@ ul li {
   background: #eee;
   font-size: 18px;
   transition: 0.2s;
-  
+
   /* make the list items unselectable */
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -143,9 +143,12 @@ input {
 </ul>
 
 <script>
-// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
+// Create a "close" symbol and append it to each list item
+  // For each item, it creates a new SPAN element using document.createElement("SPAN").
+var myNodelist = document.getElementsByTagName("LI");  // Creates a variable myNodelist that holds all li elements.
 var i;
+
+  // Loops through all li elements and adds a close button (×) to each one.
 for (i = 0; i < myNodelist.length; i++) {
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
@@ -154,17 +157,22 @@ for (i = 0; i < myNodelist.length; i++) {
   myNodelist[i].appendChild(span);
 }
 
-// Click on a close button to hide the current list item
+// Click on a close button to remove the current list item, hides the corresponding list item from view.
 var close = document.getElementsByClassName("close");
+  // Creates a variable close that holds all elements with the class "close".
+
 var i;
+
+  // Loops through all close buttons and adds an onclick event that hides the parent element when clicked.
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
     var div = this.parentElement;
     div.style.display = "none";
   }
-}
+}   // The onclick event is set to execute a function that hides the parent element of the close button, which is the list item (<li>)
 
-// Add a "checked" symbol when clicking on a list item
+
+// Adds a click event listener to the ul. If a li is clicked, it toggles the "checked" class.
 var list = document.querySelector('ul');
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
@@ -173,13 +181,17 @@ list.addEventListener('click', function(ev) {
 }, false);
 
 // Create a new list item when clicking on the "Add" button
+  // It also handles empty input validation.
 function newElement() {
   var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
   var t = document.createTextNode(inputValue);
-  li.appendChild(t);
+  li.appendChild(t); // Adds the text to the new li
   if (inputValue === '') {
     alert("You must write something!");
+
+    // If the input field is empty when clicking "Add," an alert notifies the user to enter something.
+
   } else {
     document.getElementById("myUL").appendChild(li);
   }
@@ -189,8 +201,9 @@ function newElement() {
   var txt = document.createTextNode("\u00D7");
   span.className = "close";
   span.appendChild(txt);
-  li.appendChild(span);
+  li.appendChild(span); // Adds a close button to the new li.
 
+ // Adds the onclick event to the new close button.
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function() {
       var div = this.parentElement;
